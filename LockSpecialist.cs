@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SealTeamSix
 {
-    public class Hacker : Robber, IRobber
+    public class LockSpecialist : Robber, IRobber
     {
         public override void PerformSkill(Bank bank)
         {

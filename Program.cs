@@ -7,6 +7,30 @@ namespace SealTeamSix
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine(rolodex);
+            Console.WriteLine("Please enter a name for a new member!");
+            string newMemberName = Console.ReadLine();
+
+            Console.Write(@"Please select a specialty!
+            1. Hacker (Disables Alarms)
+            2. Muscle (Disables Security Guards)
+            3. Lock Specialist (Cracks Vaults)
+            ");
+
+
+            int newMemberSpecialty = int.Parse(Console.ReadLine());
+
+
+            Console.WriteLine("Please enter a skill level between 1-100");
+            int newMemberSkillLevel = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please enter a percentage cut between 1-100");
+            int newMemberPercentageCut = int.Parse(Console.ReadLine());           
+
+            
+
+
             List<IRobber> rolodex = new List<IRobber>()
             {
                 Muscle luke = new Muscle(){
@@ -47,7 +71,10 @@ namespace SealTeamSix
 
 // In the Main method, create a List<IRobber> and store it in a variable named rolodex. This list will contain all possible operatives that we could employ for future heists. We want to give the user the opportunity to add new operatives to this list, but for now let's pre-populate the list with 5 or 6 robbers (give it a mix of Hackers, Lock Specialists, and Muscle).
 
-// When the program starts, print out the number of current operatives in the rolodex. Then prompt the user to enter the name of a new possible crew member. Once the user has entered a name, print out a list of possible specialties and have the user select which specialty this operative has. The list should contain the following options
+// When the program starts, print out the number of current operatives in the rolodex.
+//  Then prompt the user to enter the name of a new possible crew member. Once the user has entered a name, 
+//  print out a list of possible specialties and have the user select which specialty this operative has.
+//   The list should contain the following options
 
 // Hacker (Disables alarms)
 // Muscle (Disarms guards)
