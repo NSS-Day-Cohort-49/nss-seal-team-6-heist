@@ -41,21 +41,10 @@ namespace SealTeamSix
                 }
             };
 
-
-
-
-            Console.WriteLine("Your contacts:");
-
-            foreach (IRobber robber in rolodex)
-            {
-            Console.WriteLine(robber.Name);
-            }
-
             Console.WriteLine($"There are {rolodex.Count} robbers in your rolodex!");
 
-
-
             Console.WriteLine("---------------");
+            
             while (true) 
             {
                 Console.WriteLine("Please enter a name for a new member!");
@@ -70,8 +59,6 @@ namespace SealTeamSix
                 2. Muscle (Disables Security Guards)
                 3. Lock Specialist (Cracks Vaults)
                 ");
-
-
 
                 int newMemberSpecialty = int.Parse(Console.ReadLine());
 
@@ -112,27 +99,66 @@ namespace SealTeamSix
             
             } 
 
-
-                  Bank piggyBankChase = new Bank()
+            Bank piggyBankChase = new Bank()
             {
+                CashOnHand = new Random().Next(50000, 1000000),
                 AlarmScore = new Random().Next(0,101),
+                VaultScore = new Random().Next(0,101),
+                SecurityGuardScore = new Random().Next(0,101)
             };
 
+            int alarm = piggyBankChase.AlarmScore;
+            int vault = piggyBankChase.VaultScore;
+            int guard = piggyBankChase.SecurityGuardScore;
+
+            if (alarm > vault && alarm > guard)
+            {
+                Console.WriteLine($"Most secure: Alarm");
+            }
+            else if (vault > alarm && vault > guard)
+            {
+                Console.WriteLine($"Most secure: Vault");
+            }
+            else
+            {
+                Console.WriteLine("Most secure: Security guards");
+            }
+
+            if (alarm < vault && alarm < guard)
+            {
+                Console.WriteLine($"Least secure: Alarm");
+            }
+            else if (vault < alarm && vault < guard)
+            {
+                Console.WriteLine($"Least secure: Vault");
+            }
+            else
+            {
+                Console.WriteLine("Least secure: Security guards");
+            }
+
+            Console.WriteLine("Your team:");
+
+            foreach (IRobber robber in rolodex)
+            {
+                Console.WriteLine(robber.Name);
+                Console.WriteLine(robber.GetType().Name);
+                Console.WriteLine(robber.);
+
+            }
 
         }
     }
 }
 
-// Continue the above action and allow the user to enter as many crew members as they like to the rolodex until they enter a blank name before continuing.
-
-// Once the user is finished with their rolodex, it's time to begin a new heist
-
-// The program should create a new bank object and randomly assign values for these properties:
-
-// AlarmScore (between 0 and 100)
-// VaultScore (between 0 and 100)
-// SecurityGuardScore (between 0 and 100)
-// CashOnHand (between 50,000 and 1 million)
-// Let's do a little recon next. Print out a Recon Report to the user. This should tell the user what the bank's most secure system is, and what its least secure system is (don't print the actual integer scores--just the name, i.e. Most Secure: Alarm Least Secure: Vault
-
 // Now that we have a clue what kind of security we're working with, we can try to built out the perfect crew.
+
+// Print out a report of the rolodex that includes each person's name, specialty, skill level, and cut. Include an index in the report for each operative so that the user can select them by that index in the next step. (You may want to update the IRobber interface and/or the implementing classes to be able to print out the specialty)
+
+// Create a new List<IRobber> and store it in a variable called crew. Prompt the user to enter the index of the operative they'd like to include in the heist. Once the user selects an operative, add them to the crew list.
+
+// Allow the user to select as many crew members as they'd like from the rolodex. Continue to print out the report after each crew member is selected, but the report should not include operatives that have already been added to the crew, or operatives that require a percentage cut that can't be offered.
+
+// Once the user enters a blank value for a crew member, we're ready to begin the heist. Each crew member should perform his/her skill on the bank. Afterwards, evaluate if the bank is secure. If not, the heist was a success! Print out a success message to the user. If the bank does still have positive values for any of its security properties, the heist was a failure. Print out a failure message to the user.
+
+// If the heist was a success, print out a report of each members' take, along with how much money is left for yourself.
