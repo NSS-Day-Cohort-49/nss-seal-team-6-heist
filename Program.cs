@@ -7,6 +7,39 @@ namespace SealTeamSix
     {
         static void Main(string[] args)
         {
+            List<IRobber> rolodex = new List<IRobber>()
+            {
+                new Muscle(){
+                    Name = "Luke",
+                    SkillLevel = 69,
+                    PercentageCut = 70
+                },
+                new Hacker(){
+                    Name = "Kal",
+                    SkillLevel = 27,
+                    PercentageCut = 5
+                },
+                new LockSpecialist(){
+                    Name = "Kipp",
+                    SkillLevel = 36,
+                    PercentageCut = 5
+                },
+                new Muscle(){
+                    Name = "Sylvester",
+                    SkillLevel = 85,
+                    PercentageCut = 5
+                },
+                new Hacker(){
+                    Name = "Julian",
+                    SkillLevel = 90,
+                    PercentageCut = 5
+                },
+                new LockSpecialist(){
+                    Name = "Christina",
+                    SkillLevel = 99,
+                    PercentageCut = 5
+                }
+            };
 
             Console.WriteLine(rolodex);
             Console.WriteLine("Please enter a name for a new member!");
@@ -31,39 +64,6 @@ namespace SealTeamSix
             
 
 
-            List<IRobber> rolodex = new List<IRobber>()
-            {
-                Muscle luke = new Muscle(){
-                    Name = "Luke",
-                    SkillLevel = 69,
-                    PercentageCut = 70
-                },
-                Hacker kal = new Hacker(){
-                    Name = "Kal",
-                    SkillLevel = 27,
-                    PercentageCut = 5
-                },
-                LockSpecialist kipp = new LockSpecialist(){
-                    Name = "Kipp",
-                    SkillLevel = 36,
-                    PercentageCut = 5
-                },
-                Muscle sly = new Muscle(){
-                    Name = "Sylvester",
-                    SkillLevel = 85,
-                    PercentageCut = 5
-                },
-                Hacker julian = new Hacker(){
-                    Name = "Julian",
-                    SkillLevel = 90,
-                    PercentageCut = 5
-                },
-                LockSpecialist christina = new Christina(){
-                    Name = "Christina",
-                    SkillLevel = 99,
-                    PercentageCut = 5
-                }
-            }
         }
     }
 }
