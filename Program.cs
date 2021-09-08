@@ -49,14 +49,14 @@ namespace SealTeamSix
             
             while (true) 
             {
-                Console.WriteLine("Please enter a name for a new member!");
+                Console.WriteLine("Please enter a name for a new robber contact!");
                 string newMemberName = Console.ReadLine();
                 if (newMemberName == "")
                 {
                     break;
                 }
 
-                Console.Write(@"Please select a specialty!
+                Console.Write(@$"What is {newMemberName}'s specialty?
                 1. Hacker (Disables Alarms)
                 2. Muscle (Disables Security Guards)
                 3. Lock Specialist (Cracks Vaults)
@@ -113,6 +113,11 @@ namespace SealTeamSix
             int vault = piggyBankChase.VaultScore;
             int guard = piggyBankChase.SecurityGuardScore;
 
+            Console.WriteLine("");
+            Console.WriteLine("----------------------");
+            Console.WriteLine("");
+            Console.WriteLine("Security Recon Report:");
+
             if (alarm > vault && alarm > guard)
             {
                 Console.WriteLine($"Most secure: Alarm");
@@ -139,7 +144,14 @@ namespace SealTeamSix
                 Console.WriteLine("Least secure: Security guards");
             }
 
+            Console.WriteLine("");
+            Console.WriteLine("----------------------");
+            Console.WriteLine("");
+
             Console.WriteLine("Your contacts:");
+            Console.WriteLine("");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 
             foreach (IRobber robber in rolodex)
             {
@@ -151,34 +163,77 @@ namespace SealTeamSix
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
             List<IRobber> crew = new List<IRobber>();
+
+            int crewCut = 0;
+
             while (true)
             {
-                Console.WriteLine("Enter the index of the robber you want to include in your crew.");
-                string crewMember = Console.ReadLine();
-                if (crewMember == "")
+                Console.WriteLine("Enter the index of the robber you want to include in your crew, or press ENTER to begin your heist.");
+                string contactIndex = Console.ReadLine();
+
+                if (contactIndex == "")
                 {
                     break;    
                 }
 
-                int parsedMem = int.Parse(crewMember);
+                IRobber contact = rolodex[int.Parse(contactIndex)];
 
-                if (crew.Contains(rolodex[parsedMem]))
+                if (crew.Contains(contact))
                 {
                     Console.WriteLine("Robber already in crew.");
+                    Console.WriteLine("");
                 }
-                else 
+                else if (crewCut + contact.PercentageCut > 100) {
+                    Console.WriteLine("You can't afford that robber.");
+                    Console.WriteLine("");
+                }
+                else
                 {
-                    crew.Add(rolodex[parsedMem]);
+                    crew.Add(contact);
+                    crewCut += contact.PercentageCut;
+                    Console.WriteLine($"You added {contact.Name} to your crew for this job.");
+                    Console.WriteLine("");
                     Console.WriteLine("Current crew size: " + crew.Count);
                     foreach(IRobber robber in crew)
                     {
                         Console.WriteLine(robber.Name);
                     }
+                    Console.WriteLine("");
                 }
 
             }
+
+            foreach (IRobber robber in crew)
+            {
+                robber.PerformSkill(piggyBankChase);
+            }
             
-            
+            if(piggyBankChase.IsSecure){
+                Console.WriteLine("");
+                Console.WriteLine(":( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :(");
+                Console.WriteLine(":(  Your crew were no match for the bank's security systems... Hope you make lots of friends in prison!  :(");
+                Console.WriteLine(":( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :(");
+            }
+            else
+            {
+                double score = piggyBankChase.CashOnHand;
+                double yourCut = score;
+                Console.WriteLine("");
+                Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                Console.WriteLine("$  You took that bank down! Look at all dem Bennies!  $");
+                Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                Console.WriteLine("");
+                Console.WriteLine($"Your crew stole ${score}!");
+                foreach (IRobber robber in crew)
+                {
+                    double robberCut = 100.00/robber.PercentageCut;
+                    double payout = score/robberCut;
+                    Console.WriteLine($"You pay {robber.Name} their {robber.PercentageCut}% cut: ${Convert.ToInt32(payout)}");
+                    yourCut -= payout;
+                }
+
+                Console.WriteLine($"After paying your crew you have ${Convert.ToInt32(yourCut)}.");
+            }
         }
     }
 }

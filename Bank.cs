@@ -15,7 +15,7 @@ namespace SealTeamSix
         { 
             get
             {
-                if ( AlarmScore > 0 && VaultScore > 0 && SecurityGuardScore > 0 )
+                if ( AlarmScore > 0 || VaultScore > 0 || SecurityGuardScore > 0 )
                 {
                     return true; 
                 }
