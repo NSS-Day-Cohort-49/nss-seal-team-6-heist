@@ -156,8 +156,26 @@ namespace SealTeamSix
                 Console.WriteLine("Enter the index of the robber you want to include in your crew.");
                 string crewMember = Console.ReadLine();
                 if (crewMember == "")
-                    {break;}
-                crew.Add(rolodex[int.Parse(crewMember)]);
+                {
+                    break;    
+                }
+
+                int parsedMem = int.Parse(crewMember);
+
+                if (crew.Contains(rolodex[parsedMem]))
+                {
+                    Console.WriteLine("Robber already in crew.");
+                }
+                else 
+                {
+                    crew.Add(rolodex[parsedMem]);
+                    Console.WriteLine("Current crew size: " + crew.Count);
+                    foreach(IRobber robber in crew)
+                    {
+                        Console.WriteLine(robber.Name);
+                    }
+                }
+
             }
             
             
