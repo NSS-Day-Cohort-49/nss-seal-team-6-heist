@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SealTeamSix
 {
@@ -7,6 +8,7 @@ namespace SealTeamSix
     {
         static void Main(string[] args)
         {
+
             List<IRobber> rolodex = new List<IRobber>()
             {
                 new Muscle(){
@@ -17,27 +19,27 @@ namespace SealTeamSix
                 new Hacker(){
                     Name = "Kal",
                     SkillLevel = 27,
-                    PercentageCut = 5
+                    PercentageCut = 6
                 },
                 new LockSpecialist(){
                     Name = "Kipp",
                     SkillLevel = 36,
-                    PercentageCut = 5
+                    PercentageCut = 14
                 },
                 new Muscle(){
                     Name = "Sylvester",
                     SkillLevel = 85,
-                    PercentageCut = 5
+                    PercentageCut = 23
                 },
                 new Hacker(){
                     Name = "Julian",
                     SkillLevel = 90,
-                    PercentageCut = 5
+                    PercentageCut = 34
                 },
                 new LockSpecialist(){
                     Name = "Christina",
                     SkillLevel = 99,
-                    PercentageCut = 5
+                    PercentageCut = 26
                 }
             };
 
@@ -141,10 +143,12 @@ namespace SealTeamSix
 
             foreach (IRobber robber in rolodex)
             {
-                Console.WriteLine(robber.Name);
-                Console.WriteLine(robber.GetType().Name);
-                Console.WriteLine(robber.);
-
+                Console.WriteLine(rolodex.IndexOf(robber));
+                Console.WriteLine("Name: " + robber.Name);
+                Console.WriteLine("Specialty " + robber.GetType().Name);
+                Console.WriteLine("Skill Level " + robber.SkillLevel);
+                Console.WriteLine("Percentage Cut " + robber.PercentageCut);
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
 
         }
