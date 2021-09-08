@@ -139,7 +139,7 @@ namespace SealTeamSix
                 Console.WriteLine("Least secure: Security guards");
             }
 
-            Console.WriteLine("Your team:");
+            Console.WriteLine("Your contacts:");
 
             foreach (IRobber robber in rolodex)
             {
@@ -150,14 +150,21 @@ namespace SealTeamSix
                 Console.WriteLine("Percentage Cut " + robber.PercentageCut);
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
-
+            List<IRobber> crew = new List<IRobber>();
+            while (true)
+            {
+                Console.WriteLine("Enter the index of the robber you want to include in your crew.");
+                string crewMember = Console.ReadLine();
+                if (crewMember == "")
+                    {break;}
+                crew.Add(rolodex[int.Parse(crewMember)]);
+            }
+            
+            
         }
     }
 }
 
-// Now that we have a clue what kind of security we're working with, we can try to built out the perfect crew.
-
-// Print out a report of the rolodex that includes each person's name, specialty, skill level, and cut. Include an index in the report for each operative so that the user can select them by that index in the next step. (You may want to update the IRobber interface and/or the implementing classes to be able to print out the specialty)
 
 // Create a new List<IRobber> and store it in a variable called crew. Prompt the user to enter the index of the operative they'd like to include in the heist. Once the user selects an operative, add them to the crew list.
 
