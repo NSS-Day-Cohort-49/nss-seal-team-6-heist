@@ -41,6 +41,9 @@ namespace SealTeamSix
                 }
             };
 
+
+
+
             Console.WriteLine("Your contacts:");
 
             foreach (IRobber robber in rolodex)
@@ -50,69 +53,86 @@ namespace SealTeamSix
 
             Console.WriteLine($"There are {rolodex.Count} robbers in your rolodex!");
 
+
+
             Console.WriteLine("---------------");
+            while (true) 
+            {
+                Console.WriteLine("Please enter a name for a new member!");
+                string newMemberName = Console.ReadLine();
+                if (newMemberName == "")
+                {
+                    break;
+                }
 
-            Console.WriteLine("Please enter a name for a new member!");
-            string newMemberName = Console.ReadLine();
+                Console.Write(@"Please select a specialty!
+                1. Hacker (Disables Alarms)
+                2. Muscle (Disables Security Guards)
+                3. Lock Specialist (Cracks Vaults)
+                ");
 
-            Console.Write(@"Please select a specialty!
-            1. Hacker (Disables Alarms)
-            2. Muscle (Disables Security Guards)
-            3. Lock Specialist (Cracks Vaults)
-            ");
 
-            int newMemberSpecialty = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Please enter a skill level between 1-100");
-            int newMemberSkillLevel = int.Parse(Console.ReadLine());
+                int newMemberSpecialty = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Please enter a percentage cut between 1-100");
-            int newMemberPercentageCut = int.Parse(Console.ReadLine());           
+                Console.WriteLine("Please enter a skill level between 1-100");
+                int newMemberSkillLevel = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Please enter a percentage cut between 1-100");
+                int newMemberPercentageCut = int.Parse(Console.ReadLine());           
+                
+
+                IRobber newMember;
+                if (newMemberSpecialty ==  1) 
+                {
+                    newMember = new Hacker(){
+                        Name = newMemberName,
+                        SkillLevel = newMemberSkillLevel,
+                        PercentageCut = newMemberPercentageCut
+                    };
+                    rolodex.Add(newMember);
+                } else if (newMemberSpecialty == 2) 
+                {
+                    newMember = new Muscle(){
+                        Name = newMemberName,
+                        SkillLevel = newMemberSkillLevel,
+                        PercentageCut = newMemberPercentageCut
+                    };
+                    rolodex.Add(newMember);
+                } else if (newMemberSpecialty == 3) {
+                    newMember = new LockSpecialist(){
+                        Name = newMemberName,
+                        SkillLevel = newMemberSkillLevel,
+                        PercentageCut = newMemberPercentageCut
+                    };
+                    rolodex.Add(newMember);
+                }
+
+                Console.WriteLine(rolodex.Count);
             
-            IRobber newMember;
-            if (newMemberSpecialty ==  1) 
-            {
-                newMember = new Hacker(){
-                    Name = newMemberName,
-                    SkillLevel = newMemberSkillLevel,
-                    PercentageCut = newMemberPercentageCut
-                };
-                rolodex.Add(newMember);
-            } else if (newMemberSpecialty == 2) 
-            {
-                newMember = new Muscle(){
-                    Name = newMemberName,
-                    SkillLevel = newMemberSkillLevel,
-                    PercentageCut = newMemberPercentageCut
-                };
-                rolodex.Add(newMember);
-            } else if (newMemberSpecialty == 3) {
-                newMember = new LockSpecialist(){
-                    Name = newMemberName,
-                    SkillLevel = newMemberSkillLevel,
-                    PercentageCut = newMemberPercentageCut
-                };
-                rolodex.Add(newMember);
-            }
+            } 
 
-            Console.WriteLine(rolodex.Count);
+
+                  Bank piggyBankChase = new Bank()
+            {
+                AlarmScore = new Random().Next(0,101),
+            };
+
+
         }
     }
 }
 
-
-// In the Main method, create a List<IRobber> and store it in a variable named rolodex. This list will contain all possible operatives that we could employ for future heists. We want to give the user the opportunity to add new operatives to this list, but for now let's pre-populate the list with 5 or 6 robbers (give it a mix of Hackers, Lock Specialists, and Muscle).
-
-// When the program starts, print out the number of current operatives in the rolodex.
-//  Then prompt the user to enter the name of a new possible crew member. Once the user has entered a name, 
-//  print out a list of possible specialties and have the user select which specialty this operative has.
-//   The list should contain the following options
-
-// Hacker (Disables alarms)
-// Muscle (Disarms guards)
-// Lock Specialist (cracks vault)
-// Once the user has selected a specialty, prompt them to enter the crew member's skill level as an integer between 1 and 100. Then prompt the user to enter the percentage cut the crew member demands for each mission. Once the user has entered the crew member's name, specialty, skill level, and cut, you should instantiate the appropriate class for that crew member (based on their specialty) and they should be added to the rolodex.
-
 // Continue the above action and allow the user to enter as many crew members as they like to the rolodex until they enter a blank name before continuing.
 
 // Once the user is finished with their rolodex, it's time to begin a new heist
+
+// The program should create a new bank object and randomly assign values for these properties:
+
+// AlarmScore (between 0 and 100)
+// VaultScore (between 0 and 100)
+// SecurityGuardScore (between 0 and 100)
+// CashOnHand (between 50,000 and 1 million)
+// Let's do a little recon next. Print out a Recon Report to the user. This should tell the user what the bank's most secure system is, and what its least secure system is (don't print the actual integer scores--just the name, i.e. Most Secure: Alarm Least Secure: Vault
+
+// Now that we have a clue what kind of security we're working with, we can try to built out the perfect crew.
