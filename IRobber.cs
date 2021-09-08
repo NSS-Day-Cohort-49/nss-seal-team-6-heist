@@ -10,7 +10,7 @@ namespace SealTeamSix
         int SkillLevel { get; set; }
         int PercentageCut { get; set; }
 
-        void PerformSkill(Bank bank)
+        void PerformSkill(Bank bank);
         
     }
 }
