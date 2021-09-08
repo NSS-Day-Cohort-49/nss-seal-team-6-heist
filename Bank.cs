@@ -11,15 +11,18 @@ namespace SealTeamSix
         public int VaultScore { get; set; }
         public int SecurityGuardScore { get; set; }
 
-        public bool isSecure { get; set; } =
-        {
-            if (CashOnHand <= 0 && AlarmScore <= 0 && VaultScore <= 0 && SecurityGuardScore <= 0 )
+        public bool IsSecure
+        { 
+            get
             {
-                 isSecure = false;
-            }
-            else 
-            {
-                isSecure = true;
+                if ( AlarmScore <= 0 && VaultScore <= 0 && SecurityGuardScore <= 0 )
+                {
+                    return false;
+                }
+                else 
+                {
+                    return true;
+                }
             }
         }
     }
